@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{title.cadastrar}">Cadastrar Paciente</title>
+</head>
+<body>
+<h1 th:text="#{title.cadastrar}">Cadastrar Paciente</h1>
+
+<form th:action="@{/pacientes}" method="post">
+    <label for="nome" th:text="#{label.nome}">Nome:</label>
+    <input type="text" id="nome" name="nome" required/><br/>
+
+    <label for="dataNascimento" th:text="#{label.dataNascimento}">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" name="dataNascimento" required/><br/>
+
+    <button type="submit" th:text="#{button.cadastrar}">Cadastrar</button>
+</form>
+
+<br/>
+<a th:href="@{/pacientes}" th:text="#{link.voltarLista}">Voltar à lista</a>
+</body>
+</html>

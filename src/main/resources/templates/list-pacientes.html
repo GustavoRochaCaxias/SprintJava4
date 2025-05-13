@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{titulo.lista.pacientes}">Lista de Pacientes</title>
+</head>
+<body>
+
+<!-- Seletor de idioma -->
+<form method="get" action="">
+    <select name="lang" onchange="this.form.submit()">
+        <option value="pt" th:selected="${#locale.language == 'pt'}">Português</option>
+        <option value="en" th:selected="${#locale.language == 'en'}">English</option>
+    </select>
+</form>
+
+<h1 th:text="#{titulo.lista.pacientes}">Lista de Pacientes</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th th:text="#{label.nome}">Nome</th>
+        <th th:text="#{label.dataNascimento}">Data de Nascimento</th>
+        <th th:text="#{label.acoes}">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="paciente : ${pacientes}">
+        <td th:text="${paciente.id}"></td>
+        <td th:text="${paciente.nome}"></td>
+        <td th:text="${paciente.dataNascimento}"></td>
+        <td>
+            <a th:href="@{/pacientes/{id}/editar(id=${paciente.id})}" th:text="#{botao.editar}">Editar</a> |
+            <form th:action="@{/pacientes/{id}(id=${paciente.id})}" method="post"
+                  onsubmit="return confirm('Você tem certeza que deseja excluir?');">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" th:text="#{botao.excluir}">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/pacientes/cadastrar" th:text="#{link.cadastrarNovoPaciente}">Cadastrar Novo Paciente</a>
+</body>
+</html>
