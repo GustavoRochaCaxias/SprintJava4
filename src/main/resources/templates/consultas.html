@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lista de Consultas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Consultas</h1>
+
+    <div class="mb-3">
+        <a href="/consultas/novo" class="btn btn-primary">Nova Consulta</a>
+    </div>
+
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Paciente</th>
+            <th>Dentista</th>
+            <th>Data</th>
+            <th>Observações</th>
+            <th class="text-center" style="width: 130px;">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consulta : ${consultas}">
+            <td th:text="${consulta.consultaId}">1</td>
+            <td th:text="${consulta.paciente.nome}">Nome do Paciente</td>
+            <td th:text="${consulta.dentista.nome}">Nome do Dentista</td>
+            <td th:text="${#dates.format(consulta.dataConsulta, 'dd/MM/yyyy HH:mm')}">01/01/2025 14:00</td>
+            <td th:text="${consulta.observacoes}">Observações aqui</td>
+            <td class="text-center">
+                <a th:href="@{'/consultas/editar/' + ${consulta.consultaId}}" class="btn btn-sm btn-warning me-1" title="Editar">
+                    ✏️
+                </a>
+                <a th:href="@{'/consultas/deletar/' + ${consulta.consultaId}}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Tem certeza que deseja deletar esta consulta?');"
+                   title="Deletar">
+                    🗑️
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
