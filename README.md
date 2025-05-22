@@ -1,4 +1,4 @@
-# 🦷 Projeto Odontológico - Sprint 3
+# 🦷 Projeto Odontológico - Sprint 4
 
 Este projeto é uma aplicação web desenvolvida com Spring Boot que visa o gerenciamento de pacientes de um consultório odontológico. Ele contempla funcionalidades como cadastro, edição, exclusão e listagem de pacientes, além de recursos modernos como autenticação, internacionalização, mensageria e monitoramento.
 
